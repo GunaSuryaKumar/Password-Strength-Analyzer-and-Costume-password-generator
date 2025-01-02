@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>An password generation form 1st page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style media="screen">
+        *,
+        *:before,
+        *:after{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            }
+        body {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230099ff" fill-opacity="1" d="M0,32L48,74.7C96,117,192,203,288,234.7C384,267,480,245,576,202.7C672,160,768,96,864,74.7C960,53,1056,75,1152,90.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: center bottom;
+            min-height: 100vh;
+            display: flex;
+            }
+    /* Common Reset Styles */
+        * {
+            margin: 1px;
+            padding: 0;
+        }    
+    /* General HTML Styles */
+        html {
+            scroll-behavior: smooth;
+            }
+    /*logo Password Security Analyser*/
+        .logo {
+            margin-left: 0%;
+            white-space: nowrap; /* Prevent the logo from wrapping */
+            overflow: hidden; /* Hide overflowing content */
+            }
+        .logo a {
+            color: white;
+            font-size: 35px;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            }
+        .logo :hover {
+            color: #ff9900; /* Change text color to black on hover */
+            }
+    /* Header Section Styles */
+        header {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 90px;
+            width: 100%;
+            background: skyblue;
+            }
+    /*form background*/
+        .background{
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+            }
+        .background .shape{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+            }
+    /*shapes*/
+        .shape:first-child{
+            background: linear-gradient(#1845ad,#23a2f6);
+            left: -80px;
+            top: 40px;
+            }
+        .shape:nth-child(2) {
+            background: linear-gradient(to right,#ff00ea,#9c00ad);
+            margin-top: 14%;
+            height: 460px;
+            width: 390px;
+            border-radius: 83% 17% 86% 14% / 12% 87% 13% 88%;
+            position: absolute;
+            left: 50%; /* Set to center horizontally */
+            top: 50%; /* Set to center vertically */
+            transform: translate(-50%, -50%);
+            }
+        .shape:last-child{
+            background: linear-gradient(to right,#ff512f,#f09819);
+            right: -60px;
+            bottom: -85px;
+            }
+    /*full form body*/
+        form {
+            margin-top: 4%;
+            height: 450px;
+            width: 380px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 83% 17% 86% 14% / 12% 87% 13% 88%;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+            }
+        form * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+            }
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            }
+    /*labels username and password*/
+        label{
+            margin-left: 16px;
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color:rgb(0, 0, 0);
+            }
+    /*input-box*/
+        input {
+            margin-left: 16px;
+            display: block;
+            height: 40px;
+            width: 90%;
+            background-color: #000000; /* Set background color to pure black */
+            border: none; /* Remove any borders */
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #ffffff; /* Set text color to white */
+            }
+        input:hover {
+            background-color: #ffffff; /* Change background color to white on hover */
+            color: #000000; /* Change text color to black on hover */
+            }
+        input::placeholder {
+            color: #ffffff; /* Set the color of the placeholder text to white */
+            }
+        input:hover::placeholder {
+            color: #000000; /* Change the color of the placeholder text to black when input is hovered over */
+            }
+    /*generate button*/
+        button {
+            position: relative;
+            margin-left: 66px;
+            margin-top: 50px;
+            width: 200px;
+            height: 50px;
+            background-color: #ffffff;
+            color: #080710;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: colorChange 5s infinite;
+            }
+        @keyframes colorChange {
+            0% {
+                border-radius: 10px;
+                border-color: lightgreen;
+                color: lightgreen;
+                }
+            10% {
+                border-radius: 20px;
+                border-color: rgb(255, 255, 186);
+                color: rgb(255, 255, 162);
+                }
+            20% {
+                border-radius: 30px;
+                border-color: lightpink;
+                color: lightpink;
+                }
+            30% {
+                border-radius: 40px;
+                border-color: lightsalmon;
+                color: lightsalmon;
+                }
+            40% {
+                border-radius: 50px;
+                border-color: lightblue;
+                color: lightblue;
+                }
+            50% {
+                border-radius: 60px;
+                border-color: lightgreen;
+                color: lightgreen;
+                }
+            60% {
+                border-radius: 70px;
+                border-color: rgb(190, 255, 255);
+                color: rgb(183, 255, 255);
+                }
+            70% {
+                border-radius: 80px;
+                border-color: lightskyblue;
+                color: lightskyblue;
+                }
+            80% {
+                border-radius: 90px;
+                border-color: lightsalmon;
+                color: lightsalmon;
+                }
+            90% {
+                border-radius: 100px;
+                border-color: lightcoral;
+                color: lightcoral;
+                }
+            100% {
+                border-radius: 110px;
+                border-color: rgb(255, 150, 201);
+                color: rgb(255, 169, 239);
+                }
+            }
+        button:active {
+            transform: scale(0.98); /* Scale down the button slightly on click */
+            box-shadow: inset 0 0 10px black; /* Darken the shadow color for a more pronounced effect */
+            animation-play-state: paused; /* Pause the animation when the button is active/clicked */
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="#">Password Strength Analyser</a></div>
+    </header>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form class = "log" action = "/result" method = "POST">
+        <h3>Welcome</h3>
+    
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" id="username" name="username">
+
+        <label for="password">Password</label>
+        <input type="text" placeholder="Password" id="password" name="password">
+
+        <button>Generate Report</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Password Generator</title>
+    <style>
+        body,html {
+            transition: all 0.3s ease;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230099ff" fill-opacity="1" d="M0,32L48,74.7C96,117,192,203,288,234.7C384,267,480,245,576,202.7C672,160,768,96,864,74.7C960,53,1056,75,1152,90.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            }
+        body {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230099ff" fill-opacity="1" d="M0,32L48,74.7C96,117,192,203,288,234.7C384,267,480,245,576,202.7C672,160,768,96,864,74.7C960,53,1056,75,1152,90.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;   
+            }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            padding: 21px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 321px;
+            top: 11px;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Ensure the container is above the shapes */
+            }
+        h1 {
+            font-size: 25px;
+            margin-bottom: 20px;
+            color: #009fef;
+            }
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            }
+        input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            border-radius: 4px;
+            }
+        /*shapes*/
+        .background{
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+            }
+        .background .shape{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+            }
+        .shape:first-child{
+            background: linear-gradient(#1845ad,#23a2f6);
+            left: -90px;
+            bottom: 76%;
+            }
+        .shape:nth-child(2) {
+            background: linear-gradient(to right,#ff00ea,#9c00ad);
+            margin-top: 14%;
+            height: 630px;
+            width: 385px;
+            border-radius: 2% 2% 2% 2%;
+            position: absolute;
+            left: 215px;
+            top: 210px; 
+            transform: translate(-50%, -50%);
+            }
+        .shape:last-child{
+            background: linear-gradient(to right,#ff512f,#f09819);
+            right: -60px;
+            bottom: -85px;
+            }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: auto;
+            height: 100%;
+            font-size: 15px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+            box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0.2),-2px 2px 0px 0px rgba(0, 0, 0, 0.1); 
+            }
+        button:hover {
+            background-color: #357ab7;
+            }
+        button:active {
+            box-shadow: inset 0 0 10px rgb(0, 100, 172);
+            color: rgb(255, 255, 255); 
+            font-weight: 700;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Password Generator</h1>
+        <form action="/generate" method="POST">
+            <label for="color">What is your favourite colour?</label>
+            <input type="text" id="color" name="color" required>
+
+            <label for="actor">Who is your favourite actor?</label>
+            <input type="text" id="actor" name="actor" required>
+
+            <label for="school">What is your first School name?</label>
+            <input type="text" id="school" name="school" required>
+
+            <button type="submit">Generate</button>
+        </form>
+        <div id="output" class="output"> 
+            <p id="output">{{ output }}</p>
+        </div>
+        <button  onclick="copyToClipboard()">Copy</button>
+    </div>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <script>
+        function copyToClipboard() {
+    //Select the output text
+        var output = document.getElementById("output");
+        var range = document.createRange();
+        range.selectNode(output);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+    //Copy the selected text
+        document.execCommand("copy");
+    //Clear the selection
+        window.getSelection().removeAllRanges();
+    //Inform the user
+        alert("Password copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
